@@ -1,0 +1,19 @@
+{
+  "name": "caladog-admin",
+  "version": "1.0.0",
+  "description": "This is my first react-tabs project",
+  "scripts": {
+    "start": "umi dev",
+    "build": "umi build"
+  },
+  "dependencies": {
+    "@ant-design/charts": "^1.2.5",
+    "@ant-design/pro-layout": "^6.22.1",
+    "antd": "^4.16.8",
+    "react-activation": "^0.9.4",
+    "umi": "^3.5.13"
+  },
+  "keywords": [],
+  "author": "Quinn",
+  "license": "ISC"
+}
