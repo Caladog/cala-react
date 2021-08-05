@@ -3,6 +3,10 @@
 
 示例访问地址： http://demo.caladog.com 临时帐号密码：admin/admin
 
+![微信截图_20210805183827](https://user-images.githubusercontent.com/30135964/128336833-e66800c8-a524-401a-9e34-c32f9649e71f.png)
+
+![微信截图_20210805183849](https://user-images.githubusercontent.com/30135964/128336860-5f929426-0262-4341-8fed-2e883af9555e.png)
+
 首先这是一个 antd umi 项目，结合路由缓存实现Tabs标签页效果。
 1. 标签页可缓存页面；
 2. 双击标签可刷新页面；
