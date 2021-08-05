@@ -30,7 +30,7 @@ export default () => {
             },
           ]}
         >
-          <Input prefix={<UserOutlined />} placeholder="帐号" />
+          <Input prefix={<UserOutlined />} type="text" placeholder="帐号" size="large"/>
         </Form.Item>
         <Form.Item
           name="password"
@@ -41,11 +41,7 @@ export default () => {
             },
           ]}
         >
-          <Input
-            prefix={<LockOutlined />}
-            type="password"
-            placeholder="密码"
-          />
+          <Input prefix={<LockOutlined />} type="password"  placeholder="密码" size="large" />
         </Form.Item>
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>

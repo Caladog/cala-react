@@ -34,7 +34,7 @@ export default (props) => {
             <Dropdown overlay={menuHeaderDropdown}>
                 <span >
                     <Avatar size="small" style={{ backgroundColor: props.bgColor }} src={currentUser.avatar} >
-                        DSI
+                        DOG
                     </Avatar>
                     <span style={{ margin: '0 10px' }}>{currentUser.name}</span>
                 </span>

@@ -5,7 +5,7 @@ const proSettings = {
     "contentWidth": "Fluid",
     "fixedHeader": true,
     "fixSiderbar": true,
-    "title": "DSI Admin",
+    "title": "Caladog-Admin",
     "pwa": false,
     "iconfontUrl": "",
     "headerHeight": 40,
