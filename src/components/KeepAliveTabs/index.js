@@ -22,14 +22,16 @@ export default () => {
   }
 
   return (
-    <Tabs size="small" activeKey={location.pathname} type={closable ? 'editable-card' : 'card'} hideAdd className="cala-Tabs">
-      {cachingNodes.map((item) => (
-        <TabPane key={item.path} tab={
-          <li onClick={() => { history.push(item.path); }} onDoubleClick={() => { refresh(item.name) }}>
-            <span style={{ userSelect: 'none' }}> {item.name} </span>
-          </li>
-        } closeIcon={(<CloseCircleOutlined onClick={() => { dropTab(item) }} />)} />
-      ))}
-    </Tabs>
+    <div style={{ width: 'calc(100% - 150px)',float: 'left' }}>
+      <Tabs size="small" activeKey={location.pathname} type={closable ? 'editable-card' : 'card'} hideAdd className="cala-Tabs">
+        {cachingNodes.map((item) => (
+          <TabPane key={item.path} tab={
+            <li onClick={() => { history.push(item.path); }} onDoubleClick={() => { refresh(item.name) }}>
+              <span style={{ userSelect: 'none' }}> {item.name} </span>
+            </li>
+          } closeIcon={(<CloseCircleOutlined onClick={() => { dropTab(item) }} />)} />
+        ))}
+      </Tabs>
+    </div>
   )
 }

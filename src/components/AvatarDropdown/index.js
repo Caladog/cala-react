@@ -4,9 +4,9 @@ import React from 'react';
 import { history } from 'umi';
 
 export default (props) => {
-    const currentUser = { name: "系统管理员", avatar: "" };
+    const currentUser = { name: "管理员", avatar: "" };
 
-    const logout = ()=>{
+    const logout = () => {
         sessionStorage.removeItem('token');
         history.push('/user/login');
     }
@@ -30,15 +30,15 @@ export default (props) => {
     );
 
     return (
-        <>
+        <div style={{ float:'left',width: '120px', textAlign: 'right', overflow: 'hidden' }}>
             <Dropdown overlay={menuHeaderDropdown}>
-                <span >
-                    <Avatar size="small" style={{ backgroundColor: props.bgColor }} src={currentUser.avatar} >
-                        DOG
-                    </Avatar>
-                    <span style={{ margin: '0 10px' }}>{currentUser.name}</span>
+                <span>
+                <Avatar size="small" style={{ backgroundColor: props.bgColor }} src={currentUser.avatar} >
+                    DOG
+                </Avatar>
+                <span style={{ margin: '0 10px' }}>{currentUser.name}</span>
                 </span>
             </Dropdown>
-        </>
+        </div>
     );
 }

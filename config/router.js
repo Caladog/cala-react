@@ -20,26 +20,31 @@ export default [
         component: '../layouts/MainLayout', 
         routes: [
             {   
-                name: '首页',
+                name: '工作台首页',
                 path: '/home',
                 component: './home',
                 
             },
             {
-                name: '图表',
+                name: '图表详情页',
                 path: '/chart',
                 component: './chart',
                
             },
             {
-                name: '设置',
+                name: '设置详情页',
                 path: '/setting',
                 component: './setting',
             },
             {
-                name: '菜单',
+                name: '菜单详情页',
                 path: '/menu',
                 component: './menu',
+            },
+            {
+                name: '其他详情页',
+                path: '/other',
+                component: './others',
             }
         ]
     },

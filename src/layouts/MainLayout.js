@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProLayout, { PageContainer, SettingDrawer } from '@ant-design/pro-layout';
-import { DashboardOutlined, AreaChartOutlined, BarsOutlined, SettingOutlined } from '@ant-design/icons';
+import { DashboardOutlined, AreaChartOutlined, BarsOutlined, SettingOutlined, BlockOutlined } from '@ant-design/icons';
 import defaultSettings from '../../config/settings';
 import KeepAliveTabs from '@/components/KeepAliveTabs';
 import AvatarDropdown from '@/components/AvatarDropdown';
@@ -20,6 +20,7 @@ export default (props) => {
         areaChart: <AreaChartOutlined />,
         menu: <BarsOutlined />,
         setting: <SettingOutlined />,
+        other: <BlockOutlined />
     };
 
     const menuDataRender = (menuList) => {
@@ -43,8 +44,9 @@ export default (props) => {
                     return menuData;
                 },
             }}
-            headerContentRender={() => <KeepAliveTabs />}
-            rightContentRender={() => <AvatarDropdown bgColor={settings.primaryColor}/>}
+            headerRender={() => <><KeepAliveTabs /><AvatarDropdown bgColor={settings.primaryColor} /></>}
+            //headerContentRender={() => <KeepAliveTabs />}
+            //rightContentRender={() => <AvatarDropdown bgColor={settings.primaryColor} />}
             menuItemRender={(item, dom) => (
                 location.pathname === item.path ? dom : <Link to={item.path} onClick={() => { setPathname(item.path) }}>{dom}</Link>
             )}
