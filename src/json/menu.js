@@ -20,6 +20,11 @@ export default [
         "path": "/menu"
     },
     {            
+        "icon": "table",
+        "name": "表格详情页",
+        "path": "/table"
+    },
+    {            
         "icon": "other",
         "name": "其他详情页",
         "path": "/other"

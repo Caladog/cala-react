@@ -22,14 +22,12 @@ export default [
             {   
                 name: '工作台首页',
                 path: '/home',
-                component: './home',
-                
+                component: './home',                
             },
             {
                 name: '图表详情页',
                 path: '/chart',
-                component: './chart',
-               
+                component: './chart',               
             },
             {
                 name: '设置详情页',
@@ -40,6 +38,11 @@ export default [
                 name: '菜单详情页',
                 path: '/menu',
                 component: './menu',
+            },
+            {
+                name: '表格详情页',
+                path: '/table',
+                component: './table',
             },
             {
                 name: '其他详情页',

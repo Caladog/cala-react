@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProLayout, { PageContainer, SettingDrawer } from '@ant-design/pro-layout';
-import { DashboardOutlined, AreaChartOutlined, BarsOutlined, SettingOutlined, BlockOutlined } from '@ant-design/icons';
+import { DashboardOutlined, AreaChartOutlined, BarsOutlined, SettingOutlined, BlockOutlined,TableOutlined } from '@ant-design/icons';
 import defaultSettings from '../../config/settings';
 import KeepAliveTabs from '@/components/KeepAliveTabs';
 import AvatarDropdown from '@/components/AvatarDropdown';
@@ -20,6 +20,7 @@ export default (props) => {
         areaChart: <AreaChartOutlined />,
         menu: <BarsOutlined />,
         setting: <SettingOutlined />,
+        table: <TableOutlined />,
         other: <BlockOutlined />
     };
 
@@ -57,12 +58,12 @@ export default (props) => {
             </PageContainer>
 
         </ProLayout>
-        <SettingDrawer
+        {/* <SettingDrawer
             settings={settings}
             onSettingChange={(changeSetting) => { setSetting(changeSetting); }}
             hideHintAlert={true}
             disableUrlParams={true}
-        />
+        /> */}
     </>
     )
 }

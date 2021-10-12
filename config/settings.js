@@ -1,15 +1,15 @@
 const proSettings = {
-    "navTheme": "dark",
+    "navTheme": "light",
     "primaryColor": "#1890ff",
     "layout": "side",
     "contentWidth": "Fluid",
     "fixedHeader": true,
     "fixSiderbar": true,
-    "title": "Caladog-Admin",
+    "title": "Caladog",
     "pwa": false,
     "iconfontUrl": "",
     "headerHeight": 40,
-    "siderWidth":240,
+    "siderWidth":200,
     "splitMenus": false
   }
   export default proSettings;
