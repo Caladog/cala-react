@@ -2,15 +2,10 @@ import { useEffect } from 'react'
 import { notification } from 'antd'
 import { KeepAlive, useActivate, useUnactivate } from 'react-activation'
 
-import Counter from '@/components/Counter'
-
-
 function Chart() {
-
   return (
     <div>
       <h1>Chart</h1>
-      <Counter />
       {Array(30)
         .fill('')
         .map((item, idx) => (

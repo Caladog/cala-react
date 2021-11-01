@@ -1,7 +1,38 @@
 import React, { useState } from 'react';
+import { KeepAlive } from 'react-activation';
 import ProTable from '@ant-design/pro-table';
-import { Button,Tag } from 'antd';
-import { KeepAlive, useActivate, useUnactivate } from 'react-activation';
+import { Button, Tag, DatePicker, Row, Col, Form, Input } from 'antd';
+import moment from 'moment';
+
+
+const MonthSelect = () => {
+    const [startDate, setStartDate] = useState('2021-01-01');
+    const [endDate, setEndDate] = useState('2021-01-31');
+
+    function onChange(date, dateString) {
+        console.log(dateString);
+    }
+
+    return (
+        <Row>
+            <Col span={8}>
+                <Form.Item label="会计期间">
+                    <DatePicker onChange={onChange} picker="month" defaultValue={moment('2015/01', 'YYYY-MM')} />
+                </Form.Item>
+            </Col>
+            <Col span={8}>
+                <Form.Item label="开始日期" labelCol={{ span: 12 }}>
+                    <Input value={startDate} readOnly />
+                </Form.Item>
+            </Col>
+            <Col span={8}>
+                <Form.Item label="结束日期" labelCol={{ span: 12 }}>
+                    <Input value={endDate} readOnly />
+                </Form.Item>
+            </Col>
+        </Row>
+    );
+}
 
 const valueEnum = {
     0: 'close',
@@ -10,22 +41,35 @@ const valueEnum = {
     3: 'error',
 };
 const tableListDataSource = [];
-for (let i = 0; i < 2; i += 1) {
+for (let i = 0; i < 10000; i += 1) {
     tableListDataSource.push({
         key: i,
         name: `标题序号 ${i}`,
-        content:'这是一段介绍.....',
+        content: '这是一段介绍.....',
         status: valueEnum[Math.floor(Math.random() * 10) % 4],
         updatedAt: Date.now() - Math.floor(Math.random() * 1000),
         createdAt: Date.now() - Math.floor(Math.random() * 2000),
         money: Math.floor(Math.random() * 2000) * i,
     });
 }
+
 const columns = [
+    {
+        title: '',
+        key: 'createdAt',
+        dataIndex: 'createdAt',
+        hideInSetting: true,
+        hideinline: true,
+        renderFormItem: (item, { type, defaultRender,...rest }, form) => {
+            const stateType = form.getFieldValue('createdAt');
+            return (<MonthSelect {...rest}/>);
+        }
+    },
     {
         title: '标题-1',
         dataIndex: 'name',
         key: 'name',
+        search: false
     },
     {
         title: '状态-2',
@@ -42,23 +86,27 @@ const columns = [
             online: { text: '已上线', status: 'Success' },
             error: { text: '异常', status: 'Error' },
         },
+        search: false
     },
     {
         title: '详情-3',
         dataIndex: 'content',
         key: 'content',
+        search: false
     },
     {
         title: '创建时间-4',
         key: 'createdAt',
         dataIndex: 'createdAt',
         valueType: 'dateTime',
+        search: false
     },
     {
         title: '更新时间-5',
         key: 'updatedAt',
         dataIndex: 'updatedAt',
         valueType: 'date',
+        search: false
         //hideInSetting: true,
     },
     {
@@ -67,12 +115,12 @@ const columns = [
         width: 120,
         align: 'center',
         valueType: 'option',
-        render: (rescord) => [<Tag color="success" key={rescord.key} onClick={() => {}}>详情</Tag>],
+        render: (rescord) => [<Tag color="success" key={rescord.key} onClick={() => { }}>详情</Tag>],
     },
 ];
 
 const Table = () => {
-    const [columnsStateMap, setColumnsStateMap] = useState(JSON.parse(localStorage.getItem("tableColumns")||'{}'));
+    const [columnsStateMap, setColumnsStateMap] = useState(JSON.parse(localStorage.getItem("tableColumns") || '{}'));
     return (
         <ProTable
             columns={columns}
@@ -95,14 +143,15 @@ const Table = () => {
             bordered
             size='small'
             rowSelection={{}}
-            onRow={record => {}}
-            // columnsStateMap={columnsStateMap}
-            // onColumnsStateChange={map => setColumnsStateMap(map)}
+            onRow={record => { }}
             columnsState={{
                 value: columnsStateMap,
                 onChange: setColumnsStateMap,
-              }}
-            search={false}
+            }}
+            scroll={{y:480}}
+            pagination={{ pageSize: 20 }}
+            //pagination={false}
+            search={{ span: 12 }}
             dateFormatter="string"
             headerTitle="受控模式"
             toolBarRender={() => [
@@ -134,6 +183,6 @@ const Table = () => {
 
 export default (props) => (
     <KeepAlive name={props.route.name} path={props.route.path} saveScrollPosition="screen">
-      <Table />
+        <Table />
     </KeepAlive>
-  )
+)
