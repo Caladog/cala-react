@@ -30,7 +30,7 @@ export default (props) => {
     );
 
     return (
-        <div style={{ float:'left',width: '120px', textAlign: 'right', overflow: 'hidden' }}>
+        <div style={{ float:'left',width: '150px', textAlign: 'right', paddingRight:'10px',overflow: 'hidden',borderBottom:'1px solid #f0f0f0' }}>
             <Dropdown overlay={menuHeaderDropdown}>
                 <span>
                 <Avatar size="small" style={{ backgroundColor: props.bgColor }} src={currentUser.avatar} >

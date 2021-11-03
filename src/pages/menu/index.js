@@ -1,21 +1,30 @@
-import react, { useEffect } from 'react'
+import react, { useState,useEffect} from 'react'
 import { KeepAlive, useActivate, useUnactivate } from 'react-activation'
 import { Form, Button, Input, Select, Row, Col } from 'antd'
 import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/index.css'
 
 const TextEdit = () => {
-  const controls = 
-  [
-    'undo', 'redo', 'separator',
-    'font-size', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'remove-styles', 'separator', 
-    'text-align', 'separator',
-    'code', 'separator',
-    'link', 'separator', 
-    'media', 'separator',
-    'clear', 'separator',
-    'fullscreen'
-]
+  //const [editorState, setEditorState] = useState("<p>Hello <b>World!</b></p>");
+  const editorState = "<p>Hello <b>Worlds!</b></p>";
+
+  const controls =
+    [
+      'undo', 'redo', 'separator',
+      'font-size', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'remove-styles', 'separator',
+      'text-align', 'separator',
+      'code', 'separator',
+      'link', 'separator',
+      'media', 'separator',
+      'clear', 'separator',
+      'fullscreen'
+    ]
+
+    // useEffect(() => {
+    //   console.log("init")
+    // const htmlString = `<p>Hello <b>World!</b></p>` 
+    // setEditorState(htmlString);
+    // },[]);
 
   const handleSubmit = (event) => {
     //提交表单
@@ -25,6 +34,7 @@ const TextEdit = () => {
     console.log(event?.content.toHTML() || '')
     //console.log(event.content.toRAW())
   }
+
   return (
     <Form onFinish={handleSubmit}>
       <Row>
@@ -57,6 +67,7 @@ const TextEdit = () => {
             <BraftEditor
               controls={controls}
               placeholder="请输入正文内容"
+              defaultValue={BraftEditor.createEditorState(editorState)}
               style={{ border: '1px solid #d1d1d1', borderRadius: '5px' }}
               contentStyle={{ background: '#ffffff' }}
             />

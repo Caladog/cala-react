@@ -22,7 +22,7 @@ export default () => {
   }
 
   return (
-    <div style={{ width: 'calc(100% - 150px)', float: 'left' }}>
+    <div style={{ width: 'calc(100% - 160px)', float: 'left' }}>
       <Tabs size="small" activeKey={location.pathname} type={closable ? 'editable-card' : 'card'} hideAdd className="cala-Tabs">
         {cachingNodes.map((item) => (
           <TabPane key={item.path} tab={
