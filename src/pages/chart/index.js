@@ -37,7 +37,7 @@ function Chart() {
   );
   return (
     <GridContent>
-      <Row>
+      <Row gutter={16}>
         <Col lg={24} xl={8}>
           <div style={{ background: '#ffffff', margin: '10px 20px', padding: '10px' }}>
             <Form form={form} onFinish={onFinish} style={{ width: '90%', minWidth: '270px', margin: '0px auto', marginBottom: '-24px' }}>
