@@ -48,6 +48,11 @@ export default [
                 name: '其他详情页',
                 path: '/other',
                 component: './others',
+            },
+            {
+                name: '紧凑表格页',
+                path: '/grid',
+                component: './grid',
             }
         ]
     },

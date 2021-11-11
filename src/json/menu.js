@@ -28,5 +28,11 @@ export default [
         "icon": "other",
         "name": "其他详情页",
         "path": "/other"
+    },
+    {            
+        "icon": "table",
+        "name": "紧凑表格页",
+        "path": "/grid"
     }
+
 ];
