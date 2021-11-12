@@ -7,6 +7,15 @@
 
 ![微信截图_20210805183849](https://user-images.githubusercontent.com/30135964/128336860-5f929426-0262-4341-8fed-2e883af9555e.png)
 
+![image](https://user-images.githubusercontent.com/30135964/141435047-e10402ef-d663-41b9-9aea-1b082d10e4dd.png)
+
+![image](https://user-images.githubusercontent.com/30135964/141435159-6346f551-d7c7-4837-8cf9-699c7f4e5cb3.png)
+
+![image](https://user-images.githubusercontent.com/30135964/141435393-f08e0970-3467-43dc-b0d8-03d99f7efaec.png)
+
+![image](https://user-images.githubusercontent.com/30135964/141435684-0f95f731-96d4-4280-b74b-97633417dbf0.png)
+
+
 首先这是一个 antd umi 项目，结合路由缓存实现Tabs标签页效果。
 1. 标签页可缓存页面；
 2. 双击标签可刷新页面；
