@@ -96,23 +96,23 @@ export default (props) => (
       <Row gutter={16}>
         <Col md={6}>
           <Fieldset title="我是标题">            
-            <p>我是内容1</p>
-            <p>我是内容2</p>
-            <p>我是内容3</p>
+            <Text>我是内容1</Text>
+            <Text>我是内容2</Text>
+            <Text>我是内容3</Text>
           </Fieldset>
         </Col>
         <Col md={12}>
           <Fieldset title="我是标题">
             <Row gutter={16} style={{marginBottom:'20px'}}>
-              <Col md={6}><Button style={{ background: '#52C41A', color: 'white', border: 0 }} >通过</Button></Col> 
+              <Col md={6} style={{textAlign:'center'}}><Button style={{ background: '#52C41A', color: 'white', border: 0 }} >通过</Button></Col> 
               <Col md={6}><Button style={{ background: '#FAAD14', color: 'white', border: 0 }} >驳回</Button></Col>  
               <Col md={6}><Button style={{ background: '#FF4D4F', color: 'white', border: 0 }} >删除</Button></Col>  
               <Col md={6}><Button style={{ background: '#6739B6', color: 'white', border: 0 }} >其他</Button></Col>  
             </Row>
             <Row gutter={16}>
-              <Col md={6}><Button style={{ background: '#E03997', color: 'white', border: 0 }} >其他</Button></Col> 
-              <Col md={6}><Button style={{ background: '#1CBBB4', color: 'white', border: 0 }} >其他</Button></Col>  
-              <Col md={6}><Button style={{ background: '#A5673F', color: 'white', border: 0 }} >其他</Button></Col>  
+              <Col md={6} style={{textAlign:'center'}}><Button style={{ background: '#E03997', color: 'white', border: 0 }} >其他</Button></Col> 
+              <Col md={6} style={{textAlign:'center'}}><Button style={{ background: '#1CBBB4', color: 'white', border: 0 }} >其他</Button></Col>  
+              <Col md={6} style={{textAlign:'center'}}><Button style={{ background: '#A5673F', color: 'white', border: 0 }} >其他</Button></Col>  
             </Row>
           </Fieldset>
         </Col>
