@@ -1,296 +1,126 @@
 import React, { useState } from 'react';
 import { KeepAlive } from 'react-activation';
-import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import { SmileTwoTone, FrownTwoTone } from '@ant-design/icons';
+import MoodSelector from '@/components/MoodSelector';
+import CountrySelector from '@/components/CountrySelector';
+import dataList from './data';
+
+const NoRowsOverlay = (props) => {
+  return (
+    <>
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="41" className="ant-empty-img-simple" viewBox="0 0 64 41">
+      <g fill="none" fillRule="evenodd" transform="translate(0 1)">
+        <ellipse cx="32" cy="33" className="ant-empty-img-simple-ellipse" rx="32" ry="7" />
+        <g fillRule="nonzero" className="ant-empty-img-simple-g">
+          <path d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z" />
+          <path
+            d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z"
+            className="ant-empty-img-simple-path"
+          />
+        </g>
+      </g>
+    </svg>
+    <div className="empty-tips" style={{ marginTop: 8, color: 'rgba(0,0,0,.25)', fontSize: 14 }}>
+      暂无数据
+    </div>
+  </>
+  );
+};
 
 const Gird = () => {
-  const dataList = [
-    {
-      firstName: 'Bob',
-      lastName: 'Harrison',
-      gender: 'Male',
-      address:
-        '1197 Thunder Wagon Common, Cataract, RI, 02987-1016, US, (401) 747-0763',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Mary',
-      lastName: 'Wilson',
-      gender: 'Female',
-      age: 11,
-      address:
-        '3685 Rocky Glade, Showtucket, NU, X1E-9I0, CA, (867) 371-4215',
-      mood: 'Sad',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Sadiq',
-      lastName: 'Khan',
-      gender: 'Male',
-      age: 12,
-      address:
-        '3235 High Forest, Glen Campbell, MS, 39035-6845, US, (601) 638-8186',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Jerry',
-      lastName: 'Mane',
-      gender: 'Male',
-      age: 12,
-      address:
-        '2234 Sleepy Pony Mall , Drain, DC, 20078-4243, US, (202) 948-3634',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Bob',
-      lastName: 'Harrison',
-      gender: 'Male',
-      address:
-        '1197 Thunder Wagon Common, Cataract, RI, 02987-1016, US, (401) 747-0763',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Mary',
-      lastName: 'Wilson',
-      gender: 'Female',
-      age: 11,
-      address:
-        '3685 Rocky Glade, Showtucket, NU, X1E-9I0, CA, (867) 371-4215',
-      mood: 'Sad',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Sadiq',
-      lastName: 'Khan',
-      gender: 'Male',
-      age: 12,
-      address:
-        '3235 High Forest, Glen Campbell, MS, 39035-6845, US, (601) 638-8186',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Jerry',
-      lastName: 'Mane',
-      gender: 'Male',
-      age: 12,
-      address:
-        '2234 Sleepy Pony Mall , Drain, DC, 20078-4243, US, (202) 948-3634',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Bob',
-      lastName: 'Harrison',
-      gender: 'Male',
-      address:
-        '1197 Thunder Wagon Common, Cataract, RI, 02987-1016, US, (401) 747-0763',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Mary',
-      lastName: 'Wilson',
-      gender: 'Female',
-      age: 11,
-      address:
-        '3685 Rocky Glade, Showtucket, NU, X1E-9I0, CA, (867) 371-4215',
-      mood: 'Sad',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Sadiq',
-      lastName: 'Khan',
-      gender: 'Male',
-      age: 12,
-      address:
-        '3235 High Forest, Glen Campbell, MS, 39035-6845, US, (601) 638-8186',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Jerry',
-      lastName: 'Mane',
-      gender: 'Male',
-      age: 12,
-      address:
-        '2234 Sleepy Pony Mall , Drain, DC, 20078-4243, US, (202) 948-3634',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Bob',
-      lastName: 'Harrison',
-      gender: 'Male',
-      address:
-        '1197 Thunder Wagon Common, Cataract, RI, 02987-1016, US, (401) 747-0763',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Mary',
-      lastName: 'Wilson',
-      gender: 'Female',
-      age: 11,
-      address:
-        '3685 Rocky Glade, Showtucket, NU, X1E-9I0, CA, (867) 371-4215',
-      mood: 'Sad',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Sadiq',
-      lastName: 'Khan',
-      gender: 'Male',
-      age: 12,
-      address:
-        '3235 High Forest, Glen Campbell, MS, 39035-6845, US, (601) 638-8186',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Jerry',
-      lastName: 'Mane',
-      gender: 'Male',
-      age: 12,
-      address:
-        '2234 Sleepy Pony Mall , Drain, DC, 20078-4243, US, (202) 948-3634',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Bob',
-      lastName: 'Harrison',
-      gender: 'Male',
-      address:
-        '1197 Thunder Wagon Common, Cataract, RI, 02987-1016, US, (401) 747-0763',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Mary',
-      lastName: 'Wilson',
-      gender: 'Female',
-      age: 11,
-      address:
-        '3685 Rocky Glade, Showtucket, NU, X1E-9I0, CA, (867) 371-4215',
-      mood: 'Sad',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Sadiq',
-      lastName: 'Khan',
-      gender: 'Male',
-      age: 12,
-      address:
-        '3235 High Forest, Glen Campbell, MS, 39035-6845, US, (601) 638-8186',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Jerry',
-      lastName: 'Mane',
-      gender: 'Male',
-      age: 12,
-      address:
-        '2234 Sleepy Pony Mall , Drain, DC, 20078-4243, US, (202) 948-3634',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Bob',
-      lastName: 'Harrison',
-      gender: 'Male',
-      address:
-        '1197 Thunder Wagon Common, Cataract, RI, 02987-1016, US, (401) 747-0763',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Mary',
-      lastName: 'Wilson',
-      gender: 'Female',
-      age: 11,
-      address:
-        '3685 Rocky Glade, Showtucket, NU, X1E-9I0, CA, (867) 371-4215',
-      mood: 'Sad',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Sadiq',
-      lastName: 'Khan',
-      gender: 'Male',
-      age: 12,
-      address:
-        '3235 High Forest, Glen Campbell, MS, 39035-6845, US, (601) 638-8186',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-    {
-      firstName: 'Jerry',
-      lastName: 'Mane',
-      gender: 'Male',
-      age: 12,
-      address:
-        '2234 Sleepy Pony Mall , Drain, DC, 20078-4243, US, (202) 948-3634',
-      mood: 'Happy',
-      country: 'Ireland',
-    },
-  ]
+  const [gridApi, setGridApi] = useState(null);
+  const [gridColumnApi, setGridColumnApi] = useState(null);
+  const checkboxSelection = (params) => {
+    return params.columnApi.getRowGroupColumns().length === 0;
+  };
+  const headerCheckboxSelection = (params) => {
+    return params.columnApi.getRowGroupColumns().length === 0;
+  };
 
-  var checkboxSelection = function (params) {
-    return params.columnApi.getRowGroupColumns().length === 0;
+  // 行显示格式化
+  const MoodCellFormatter = (row) => {
+    if (row.value === 'Sad') {
+      return <FrownTwoTone twoToneColor="#eb2f96" />
+    } else {
+      return <SmileTwoTone twoToneColor="#52c41a" />
+    }
   };
-  var headerCheckboxSelection = function (params) {
-    return params.columnApi.getRowGroupColumns().length === 0;
+
+
+  // 行编辑格式化
+  const moodCellEditor = (params) => {
+    return { component: 'moodSelector' };
+  }
+  const countryCellEditor = (params) => {
+    //console.log(params);
+    return { component: 'countrySelector' };
+  }
+
+  const agColumn = [
+    { headerName: "姓名", field: "firstName", checkboxSelection: checkboxSelection, headerCheckboxSelection: headerCheckboxSelection,lockPosition:true,suppressNavigable:true,rowDrag:true},
+    { headerName: "性别", field: "gender" },
+    { headerName: "年龄", field: "age", sortable: true,editable: true },
+    { headerName: "心情", field: "mood", headerClass: "centerAlign", width: 100, resizable: false, cellRenderer: "moodCellRenderer", cellStyle: { textAlign: 'center' }, editable: true, cellEditorSelector: moodCellEditor },
+    { headerName: "国家", field: "country", cellStyle: { textAlign: 'center' }, editable: true, cellEditorSelector: countryCellEditor },
+    { headerName: "地址", field: "address", minWidth: 300 },
+  ];
+
+  const gridOptions = {
+    columnDefs: agColumn,
+    singleClickEdit:true,
+    defaultColDef: {
+      editable: false,
+      sortable: false,
+      resizable: true,
+      filter: true,
+      width: 150,
+      minWidth: 100,
+      maxWidth: 500,
+    },    
+  }
+  const onGridReady = (params) => {
+    console.log(params);
+    setGridApi(params.api);
+    setGridColumnApi(params.columnApi);
+  }
+  //// 排序
+  const onCountryFirst = () => {
+    console.log("c");
+    gridColumnApi.moveColumn('country', 3);
   };
+  const onPrintColumns = () => {
+    const cols = gridColumnApi.getAllGridColumns();
+    //console.log(cols);
+    const colToNameFunc = (col, index) => index + ':{field:' + col.getId() +',width:'+col.getActualWidth()+',visible:'+col.isVisible()+'}';
+    const colNames = cols.map(colToNameFunc).join('\n');
+    console.log(colNames);
+  }
 
   return (
-    <div style={{ width: '100%', height: '600px' }} className="ag-theme-balham">
-
+    <div style={{ width: '100%', height: '720px' }} className="ag-theme-balham">
+      <button onClick={() => onCountryFirst()}>Country First</button>
+      <button onClick={() => onPrintColumns()}>Print Columns</button>
       <AgGridReact
         rowData={dataList}
-        autoGroupColumnDef={{
-          headerName: 'Group',
-          minWidth: 170,
-          field: 'athlete',
-          valueGetter: function (params) {
-            if (params.node.group) {
-              return params.node.key;
-            } else {
-              return params.data[params.colDef.field];
-            }
-          },
-          headerCheckboxSelection: true,
-          cellRenderer: 'agGroupCellRenderer',
-          cellRendererParams: { checkbox: true },
-        }}
-        defaultColDef={{
-          flex: 1,
-          minWidth: 100,
-          editable: true,
-          resizable: true,
-        }}
+        gridOptions={gridOptions}
         rowSelection={'multiple'}
         pagination={true}
-      >
-        <AgGridColumn
-            field="firstName"
-            minWidth={100}
-            checkboxSelection={checkboxSelection}
-            headerCheckboxSelection={headerCheckboxSelection}
-          />
-        <AgGridColumn field="lastName" />
-        <AgGridColumn field="gender" />
-        <AgGridColumn field="age" sortable={true} />
-        <AgGridColumn field="mood" />
-        <AgGridColumn field="country" />
-        <AgGridColumn field="address" minWidth={200} />
-      </AgGridReact>
+        paginationPageSize={30}
+        frameworkComponents={{
+          moodCellRenderer: MoodCellFormatter,
+          moodSelector: MoodSelector,
+          countrySelector: CountrySelector,
+          noRowsOverlay:NoRowsOverlay
+        }}
+        onDragStopped={onPrintColumns}
+        animateRows={true}
+        onGridReady={onGridReady}        
+        noRowsOverlayComponent={'noRowsOverlay'}
+        headerHeight= {30}
+      />
     </div>
   );
 };
