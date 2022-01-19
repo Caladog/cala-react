@@ -36,9 +36,6 @@ export default forwardRef((props, ref) => {
       isPopup() {
         return true;
       },
-      getPopupPosition() {
-        return 'under';
-      },
       isCancelBeforeStart() {
         return false;
       },
