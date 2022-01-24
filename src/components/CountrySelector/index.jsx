@@ -63,7 +63,7 @@ export default forwardRef((props, ref) => {
   return (
     <Select
       ref={selectRef}
-      showSearch
+      optionFilterProp="value"
       showArrow={false}
       style={{ width: '100%' }}
       onSelect={onSelect}

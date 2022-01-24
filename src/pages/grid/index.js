@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { KeepAlive } from 'react-activation'
 import { AgGridReact } from 'ag-grid-react'
+import { Space } from 'antd'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-balham.css'
 import { SmileTwoTone, FrownTwoTone } from '@ant-design/icons'
+import GenderSelector from '@/components/GenderSelector'
 import MoodSelector from '@/components/MoodSelector'
 import CountrySelector from '@/components/CountrySelector'
 import dataList from './data'
@@ -33,6 +35,7 @@ const NoRowsOverlay = (props) => {
 const Gird = () => {
   const [gridApi, setGridApi] = useState(null)
   const [gridColumnApi, setGridColumnApi] = useState(null)
+
   const checkboxSelection = (params) => {
     return params.columnApi.getRowGroupColumns().length === 0
   }
@@ -44,7 +47,7 @@ const Gird = () => {
 
   // 行显示格式化
   const MoodCellFormatter = (row) => {
-    if (row.value === 'Sad') {
+    if (row.value === 'Sad' || row.value === 'Angry') {
       return <FrownTwoTone twoToneColor="#eb2f96" />
     } else {
       return <SmileTwoTone twoToneColor="#52c41a" />
@@ -52,6 +55,9 @@ const Gird = () => {
   }
 
   // 行编辑格式化
+  const genderCellEditor = (params) => {
+    return { component: 'genderSelector' }
+  }
   const moodCellEditor = (params) => {
     return { component: 'moodSelector' }
   }
@@ -61,9 +67,10 @@ const Gird = () => {
 
   const agColumn = [
     { headerName: "姓名", field: "firstName", checkboxSelection: checkboxSelection, headerCheckboxSelection: headerCheckboxSelection, lockPosition: true, suppressNavigable: true, rowDrag: true },
-    { headerName: "性别", field: "gender" },
+    { headerName: "性别", field: "gender", editable: true, cellEditorSelector: genderCellEditor, cellEditorPopupPosition: 'under' },
     { headerName: "年龄", field: "age", sortable: true, editable: true },
     { headerName: "心情", field: "mood", headerClass: "centerAlign", width: 100, resizable: false, cellRenderer: "moodCellRenderer", cellStyle: { textAlign: 'center' }, editable: true, cellEditorSelector: moodCellEditor, cellEditorPopupPosition: 'under' },
+    //{ headerName: "心情", field: "mood", headerClass: "centerAlign", width: 100, editable: true, cellEditorSelector: moodCellEditor, cellEditorPopupPosition: 'under' },
     { headerName: "国家", field: "country", cellStyle: { textAlign: 'center' }, editable: true, cellEditorSelector: countryCellEditor },
     { headerName: "地址", field: "address", minWidth: 300, suppressAutoSize: true, flex: 2 },
   ];
@@ -88,7 +95,6 @@ const Gird = () => {
   }
   //// 排序
   const onCountryFirst = () => {
-    console.log('c')
     gridColumnApi.moveColumn('country', 3)
   }
   //// 列顺序
@@ -103,12 +109,31 @@ const Gird = () => {
   const onPrintData = () => {
     console.log(gridData);
   }
+  ////新增一条数据
+  const onAddData = () => {
+    //console.log('add')
+    var rowNode = gridApi.getRowNode();
+    console.log('add', rowNode)
+    var newData = {
+      firstName: 'King',
+      lastName: 'Quinn',
+      gender: 'Male',
+      age: 40,
+      address: 'Qingdao Shandong',
+      mood: 'Happy',
+      country: 'China',
+    };
+    //rowNode.setData(newData)
+  }
 
-  return (
-    <div style={{ width: '100%', height: '720px' }} className="ag-theme-balham">
+  return (<>
+    <Space>
       <button onClick={() => onCountryFirst()}>Country First</button>
       <button onClick={() => onPrintColumns()}>Print Columns</button>
       <button onClick={() => onPrintData()}>Data List</button>
+      <button onClick={() => onAddData()}>Add newData</button>
+    </Space>
+    <div style={{ width: '100%', height: '720px', marginTop: '10px' }} className="ag-theme-balham">
       <AgGridReact
         rowData={gridData}
         gridOptions={gridOptions}
@@ -117,6 +142,7 @@ const Gird = () => {
         paginationPageSize={30}
         frameworkComponents={{
           moodCellRenderer: MoodCellFormatter,
+          genderSelector: GenderSelector,
           moodSelector: MoodSelector,
           countrySelector: CountrySelector,
           noRowsOverlay: NoRowsOverlay
@@ -128,6 +154,7 @@ const Gird = () => {
         headerHeight={30}
       />
     </div>
+  </>
   )
 }
 

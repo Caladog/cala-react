@@ -1,4 +1,4 @@
-import bgImage from '@/assets/bg.png';
+import bgImage from '@/assets/images/bg.png';
 
 export default (props) => {
 
