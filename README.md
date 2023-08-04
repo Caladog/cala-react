@@ -9,7 +9,7 @@
 5. 表格列排序，支持个性化保存；
 6. ......
 
-示例访问地址： http://demo.caladog.com 临时帐号密码：admin/admin
+示例访问地址： http://admin.caladog.com 临时帐号密码：admin/admin
 
 ![微信截图_20210805183827](https://user-images.githubusercontent.com/30135964/128336833-e66800c8-a524-401a-9e34-c32f9649e71f.png)
 
